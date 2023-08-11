@@ -21,7 +21,7 @@ fi
 
 if [[ "${max_players}" -gt "${PLAYER_LIMIT}" ]];
 then
-	setProperty "max-players" "%{PLAYER_LIMIT}" "server.properties"
+	setProperty "max-players" "${PLAYER_LIMIT}" "server.properties"
 	echo "${MAGENTA}[DEBUG] ${gray}Player limit over max. Reset.${reset}"
 fi
 
