@@ -8,19 +8,19 @@ cd /home/container || exit 1
 PARSED=$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g' | eval echo "$(cat -)")
 
 logo=$(figlet OdysseyNodes)
-echo "$logo - MC Hosting"
+echo "$(lolcat -f logo) ${RESET}- ${GRAY}MC Hosting${RESET}"
 echo -e "\n"
 echo "-----------------------------------------------------------------"
-echo "Website: https://odysseynodes.com"
-echo "Discord: https://odysseynodes.com/discord"
+echo "${RESET}Website: ${CYAN}https://odysseynodes.com"
+echo "${RESET}Discord: ${YAN}https://odysseynodes.com/discord"
 echo -e "\n"
 echo "-----------------------------------------------------------------"
 
-echo -e "\nOdyssey Server Helper... Launching..."
+echo -e "\n${CYAN}Odyssey Server Helper${RESET}... ${YELLOW}Launching${RESET}..."
 sleep 2;
-echo -e "\nOdyssey Server Helper... Launched..."
+echo -e "\n${CYAN}Odyssey Server Helper${RESET}... ${GREEN}Launched${RESET}..."
 sleep 1;
-echo -e "\nOdyssey Server Helper... Starting Server..."
+echo -e "\n${CYAN}Odyssey Server Helper${RESET}... ${MAGENTA}Starting Server${RESET}..."
 
 echo "-----------------------------------------------------------------"
 
