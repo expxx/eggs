@@ -17,7 +17,9 @@ WORKDIR     /home/container
 COPY        ./../entrypoint.sh /entrypoint.sh
 COPY        ./../utils.sh /utils.sh
 
+USER root
 RUN         chmod 777 /utils.sh
 RUN         chmod 777 /entrypoint.sh
+USER container
 
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
