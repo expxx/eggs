@@ -20,10 +20,11 @@ echo "${RESET}Discord: ${CYAN}https://odysseynodes.com/discord"
 echo -e "\n"
 echo "-----------------------------------------------------------------"
 
-echo -e "\n${CYAN}Odyssey Server Helper${RESET}... ${YELLOW}Launching${RESET}..."
+echo -e "\n${CYAN}Odyssey Server Helper${RESET}: ${YELLOW}Launching${RESET}..."
 sleep 2;
-echo -e "\n${CYAN}Odyssey Server Helper${RESET}... ${GREEN}Launched${RESET}..."
-
+echo -e "\n${CYAN}Odyssey Server Helper${RESET}: ${GREEN}Launched${RESET}..."
+sleep 1;
+echo -e "\n${CYAN}Odyssey Server Helper${RESET}: ${BLUE}Parsing Configs${RESET}..."
 if [[ -z ${max_players} ]];
 then
 	# cant be bothered to rename the variable, PLAYER_LIMIT is just the recommended limit
@@ -40,7 +41,7 @@ then
 	echo "${MAGENTA}[DEBUG] ${gray}Set First-Boot MOTD${reset}"
 fi
 
-sleep 1;
+sleep 2;
 echo -e "\n${CYAN}Odyssey Server Helper${RESET}... ${MAGENTA}Starting Server${RESET}..."
 
 echo "-----------------------------------------------------------------"
