@@ -15,7 +15,7 @@ max_players=$(getProperty max-players)
 
 if [[ -z ${max_players} ]];
 then
-	echo "max-players: ${PLAYER_LIMIT}" # PLAYER_LIMIT is env variable on ptero
+	echo "max-players=${PLAYER_LIMIT}" > server.properties # PLAYER_LIMIT is env variable on ptero
 	echo "${MAGENTA}[DEBUG] ${gray}Set MAX Players${reset}"
 fi
 
