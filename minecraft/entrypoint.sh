@@ -7,6 +7,23 @@ export TZ
 cd /home/container || exit 1
 PARSED=$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g' | eval echo "$(cat -)")
 
+logo=$(figlet OdysseyNodes)
+echo "$logo - MC Hosting"
+echo -e "\n"
+echo "-----------------------------------------------------------------"
+echo "Website: https://odysseynodes.com"
+echo "Discord: https://odysseynodes.com/discord"
+echo -e "\n"
+echo "-----------------------------------------------------------------"
+
+echo -e "\nOdyssey Server Helper... Launching..."
+sleep 2;
+echo -e "\nOdyssey Server Helper... Launched..."
+sleep 1;
+echo -e "\nOdyssey Server Helper... Starting Server..."
+
+echo "-----------------------------------------------------------------"
+
 PROPERTY_FILE=server.properties
 
 max_players=$(getProperty max-players)
