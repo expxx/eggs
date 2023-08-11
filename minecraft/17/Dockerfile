@@ -2,12 +2,21 @@ FROM        --platform=$TARGETOS/$TARGETARCH eclipse-temurin:17-jdk-focal
 
 LABEL       author="Michael Parker" maintainer="parker@pterodactyl.io"
 
-LABEL       org.opencontainers.image.source="https://github.com/pterodactyl/yolks"
-LABEL       org.opencontainers.image.licenses=MIT
+RUN   apt update \
+      && apt install -y --no-install-recommends wget git curl tar zip unzip jq locales figlet ruby
+      && apt-get clean autoclean \
+      && apt-get autoremove --yes \
+      && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
-RUN         apt update -y \
-						&& apt install -y curl lsof ca-certificates openssl git tar sqlite3 fontconfig tzdata iproute2 libfreetype6 \
-						&& useradd -d /home/container -m container
+RUN wget https://github.com/busyloop/lolcat/archive/master.zip \
+    && unzip master.zip \
+    && cd lolcat-master/bin \
+    && gem install lolcat \
+    && cd ../..
+
+## configure locale
+RUN   update-locale lang=en_US.UTF-8 \
+      &&   dpkg-reconfigure --frontend noninteractive locales
 
 USER        container
 ENV         USER=container HOME=/home/container
