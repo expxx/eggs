@@ -42,7 +42,7 @@ then
 fi
 
 sleep 2;
-echo -e "\n${CYAN}Odyssey Server Helper${RESET}... ${MAGENTA}Starting Server${RESET}..."
+echo -e "\n${CYAN}Odyssey Server Helper${RESET}: ${MAGENTA}Starting Server${RESET}..."
 
 echo "-----------------------------------------------------------------"
 
