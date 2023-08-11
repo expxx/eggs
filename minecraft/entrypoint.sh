@@ -25,7 +25,7 @@ fi
 
 if [[ ! -f "eula.txt" ]];
 then
-	PS3="${CYAN}Do you agree to the Minecraft EULA: ${RESET}"
+	echo "${CYAN}Do you agree to the Minecraft EULA: ${RESET}"
  	select agree in Yes No
   	do
 		case $agree in
