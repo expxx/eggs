@@ -6,7 +6,7 @@ RUN   apt update \
       && apt install -y --no-install-recommends openjdk-8-jdk-headless \
       && apt-get clean autoclean \
       && apt-get autoremove --yes \
-      && rm -rf /var/lib/{apt,dpkg,cache,log}/ \
+      && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
 RUN   useradd -d /home/container -m container
 
