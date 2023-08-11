@@ -11,20 +11,35 @@ PROPERTY_FILE=server.properties
 
 max_players=$(getProperty max-players)
 
-#echo "${MAGENTA}[DEBUG] ${gray}${max_players}${reset}"
-
 if [[ -z ${max_players} ]];
 then
+	# cant be bothered to rename the variable, PLAYER_LIMIT is just the recommended limit
 	echo "max-players=${PLAYER_LIMIT}" > server.properties # PLAYER_LIMIT is env variable on ptero
 	echo "${MAGENTA}[DEBUG] ${gray}Set MAX Players${reset}"
 fi
 
 if [[ "${max_players}" -gt "${PLAYER_LIMIT}" ]];
 then
-	setProperty "max-players" "${PLAYER_LIMIT}" "server.properties"
-	echo "${MAGENTA}[DEBUG] ${gray}Player limit over max. Reset.${reset}"
+	echo "${RED}[WARN] ${gray}You are over the recommended player cap.${reset}"
 fi
 
-
+if [[ ! -f "eula.txt" ]];
+then
+	PS1="Do you agree to the Minecraft EULA"
+ 	select agree in Yes No do;
+  	do
+		case $agree in
+  			"Yes")
+     				echo "eula=true" > eula.txt;
+	 			break;;
+			"No")
+   				echo "${RED}[WARN] ${gray}You must agree to the EULA to run minecraft.${reset}"
+       				exit 403;;
+	   		*)
+      				echo "${RED}[WARN] ${gray}Not a valid input.${reset}"
+	  			exit 404;;
+      		esac
+  	done;
+fi
 
 eval ${PARSED}
