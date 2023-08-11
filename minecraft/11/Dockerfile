@@ -14,4 +14,6 @@ WORKDIR     /home/container
 
 COPY        ./../entrypoint.sh /entrypoint.sh
 COPY        ./../utils.sh /utils.sh
+CMD         [ "/bin/chmod", "a+x /utils.sh" ]
+CMD         [ "/bin/chmod", "a+x /entrypoint.sh" ]
 CMD         [ "/bin/bash", "/entrypoint.sh" ]
