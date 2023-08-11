@@ -7,8 +7,8 @@ export TZ
 cd /home/container || exit 1
 PARSED=$(echo "${STARTUP}" | sed -e 's/{{/${/g' -e 's/}}/}/g' | eval echo "$(cat -)")
 
-logo=$(figlet OdysseyNodes)
-echo "$(echo $logo | lolcat -f) ${RESET}- ${GRAY}MC Hosting${RESET}"
+logo=$(figlet OdysseyNodes | lolcat -f)
+echo "$logo ${RESET}- ${GRAY}MC Hosting${RESET}"
 echo -e "\n"
 echo "-----------------------------------------------------------------"
 echo "${RESET}Website: ${CYAN}https://odysseynodes.com"
