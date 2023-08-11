@@ -1,22 +1,12 @@
-FROM        --platform=$TARGETOS/$TARGETARCH eclipse-temurin:17-jdk-focal
+#FROM        --platform=$TARGETOS/$TARGETARCH eclipse-temurin:17-jdk-focal
+FROM ghcr.io/expxx/image:base
 
-LABEL       author="Michael Parker" maintainer="parker@pterodactyl.io"
 
 RUN   apt update \
-      && apt install -y --no-install-recommends wget git curl tar zip unzip jq locales figlet ruby \
+      && apt install -y --no-install-recommends openjdk-17-jdk-headless \
       && apt-get clean autoclean \
       && apt-get autoremove --yes \
       && rm -rf /var/lib/{apt,dpkg,cache,log}/
-
-RUN wget https://github.com/busyloop/lolcat/archive/master.zip \
-    && unzip master.zip \
-    && cd lolcat-master/bin \
-    && gem install lolcat \
-    && cd ../..
-
-## configure locale
-RUN   update-locale lang=en_US.UTF-8 \
-      &&   dpkg-reconfigure --frontend noninteractive locales
 
 USER        container
 ENV         USER=container HOME=/home/container
