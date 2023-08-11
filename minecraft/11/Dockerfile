@@ -8,6 +8,9 @@ RUN   apt update \
       && apt-get autoremove --yes \
       && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
+RUN   useradd -d /home/container -m container
+
+
 USER        container
 ENV         USER=container HOME=/home/container
 WORKDIR     /home/container
