@@ -12,7 +12,7 @@ echo "$(lolcat -f logo) ${RESET}- ${GRAY}MC Hosting${RESET}"
 echo -e "\n"
 echo "-----------------------------------------------------------------"
 echo "${RESET}Website: ${CYAN}https://odysseynodes.com"
-echo "${RESET}Discord: ${YAN}https://odysseynodes.com/discord"
+echo "${RESET}Discord: ${CYAN}https://odysseynodes.com/discord"
 echo -e "\n"
 echo "-----------------------------------------------------------------"
 
