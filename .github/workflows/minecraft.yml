@@ -1,0 +1,38 @@
+name: build minecraft
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - minecraft/**
+jobs:
+  push:
+    name: "eggs:java_${{ matrix.tag }}"
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        tag:
+          - 8
+          - 11
+          - 17
+    steps:
+      - uses: actions/checkout@v3
+      - uses: docker/setup-qemu-action@v2
+      - uses: docker/setup-buildx-action@v2
+        with:
+          buildkitd-flags: --debug
+      - uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.REGISTRY_TOKEN }}
+      - uses: docker/build-push-action@v4
+        with:
+          context: ./minecraft
+          file: ./minecraft/${{ matrix.tag }}/Dockerfile
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: |
+            ghcr.io/expxx/eggs:java_${{ matrix.tag }}
