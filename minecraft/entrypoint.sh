@@ -1,6 +1,10 @@
-
+PROPERTY_FILE=server.properties
 /utils.sh || exit 403
 source /utils.sh || exit 403
+
+max_players=$(getProperty max-players)
+motd=$(getProperty motd)
+
 TZ=${TZ:-UTC}
 export TZ
 
@@ -19,26 +23,27 @@ echo "-----------------------------------------------------------------"
 echo -e "\n${CYAN}Odyssey Server Helper${RESET}... ${YELLOW}Launching${RESET}..."
 sleep 2;
 echo -e "\n${CYAN}Odyssey Server Helper${RESET}... ${GREEN}Launched${RESET}..."
-sleep 1;
-echo -e "\n${CYAN}Odyssey Server Helper${RESET}... ${MAGENTA}Starting Server${RESET}..."
-
-echo "-----------------------------------------------------------------"
-
-PROPERTY_FILE=server.properties
-
-max_players=$(getProperty max-players)
 
 if [[ -z ${max_players} ]];
 then
 	# cant be bothered to rename the variable, PLAYER_LIMIT is just the recommended limit
-	echo "max-players=${PLAYER_LIMIT}" > server.properties # PLAYER_LIMIT is env variable on ptero
-	echo "${MAGENTA}[DEBUG] ${gray}Set MAX Players${reset}"
+	echo "max-players=${PLAYER_LIMIT}" >> server.properties # PLAYER_LIMIT is env variable on ptero
+	echo "${MAGENTA}[DEBUG] ${gray}Set First-Boot MAX Players${reset}"
 fi
-
 if [[ "${max_players}" -gt "${PLAYER_LIMIT}" ]];
 then
 	echo "${RED}[WARN] ${gray}You are over the recommended player cap.${reset}"
 fi
+if [[ -z ${motd} ]];
+then
+	echo "motd=Server hosted on OdysseyNodes.com" >> server.properties
+	echo "${MAGENTA}[DEBUG] ${gray}Set First-Boot MOTD${reset}"
+fi
+
+sleep 1;
+echo -e "\n${CYAN}Odyssey Server Helper${RESET}... ${MAGENTA}Starting Server${RESET}..."
+
+echo "-----------------------------------------------------------------"
 
 if [[ ! -f "eula.txt" ]];
 then
